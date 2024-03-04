@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>MowItNow: Tondeuse à gazon</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<h1>Création de pelouse et lancement des tondeuses</h1>
+<form action="#" th:action="@{/demarrerTondeuses}" method="post" enctype="multipart/form-data">
+    <p>Fichier d'entree de configuration de pelouse et coordonnées de tondeuses:<input type="file" name="fichier" id="fichierCoordonnees" multiple="multiple" required/>
+        <input type="submit" id="upload" value="Démarrer tondeuses" />
+</form>
+</body>
+</html>
