@@ -61,7 +61,8 @@ Ce projet utilise Maven pour la gestion des dépendances. Les dépendances princ
     ```
     git clone $GIT_URL
     ```
-   Avec **$GIT_URL**, l'url de projet GIT.
+   Avec **$GIT_URL** l'url de projet GIT. 
+   Dans nôtre cas, le GIT_URL correspond à **https://github.com/badrman/tondeusemowItnow.git**
 
 
 2. Accédez au répertoire racine de l'application.
