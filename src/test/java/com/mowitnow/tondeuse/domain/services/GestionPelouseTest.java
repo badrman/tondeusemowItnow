@@ -1,11 +1,20 @@
 package com.mowitnow.tondeuse.domain.services;
 
-import com.mowitnow.tondeuse.domain.model.*;
+import com.mowitnow.tondeuse.domain.model.Commande;
+import com.mowitnow.tondeuse.domain.model.Direction;
+import com.mowitnow.tondeuse.domain.model.Pelouse;
+import com.mowitnow.tondeuse.domain.model.Position;
+import com.mowitnow.tondeuse.domain.model.Tondeuse;
+import com.mowitnow.tondeuse.domain.model.TondeuseCommandes;
+import com.mowitnow.tondeuse.domain.services.implementation.GestionPelouseImpl;
+import com.mowitnow.tondeuse.domain.services.implementation.GestionTondeuseCommandeImpl;
+import com.mowitnow.tondeuse.domain.services.implementation.GestionTondeuseImpl;
+import com.mowitnow.tondeuse.domain.services.implementation.ParseurLigneCommandesTondeuseImpl;
+import com.mowitnow.tondeuse.domain.services.implementation.ParseurLigneCoordonneesTondeuseImpl;
+import com.mowitnow.tondeuse.domain.services.implementation.ParseurLignePelouseImpl;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,12 +30,18 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * @since 0.0.1-SNAPSHOT
  * Description : Classe de test regroupant les tests de service {@link GestionPelouse}
  */
-@SpringBootTest
 class GestionPelouseTest
 {
-    @Autowired
-    @Qualifier("gestionpelouse")
-    private GestionPelouse gestionpelouse;
+    private static GestionPelouse gestionpelouse;
+
+    @BeforeAll
+    public static void setUp()
+    {
+        // Créer une liste des services de mapping
+        var parseLigneServices = Arrays.asList(new ParseurLignePelouseImpl(), new ParseurLigneCoordonneesTondeuseImpl(), new ParseurLigneCommandesTondeuseImpl());
+        gestionpelouse = new GestionPelouseImpl(parseLigneServices, new GestionTondeuseImpl(new GestionTondeuseCommandeImpl()));
+    }
+
 
     @Test
     void intialiser_pelouse_a_partir_dun_fichier() throws FileNotFoundException {

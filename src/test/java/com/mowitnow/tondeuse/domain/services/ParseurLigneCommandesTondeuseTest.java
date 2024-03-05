@@ -5,12 +5,11 @@ import com.mowitnow.tondeuse.domain.constantes.TestConstantes;
 import com.mowitnow.tondeuse.domain.exception.ParseLigneException;
 import com.mowitnow.tondeuse.domain.model.Commande;
 import com.mowitnow.tondeuse.domain.model.TondeuseCommandes;
+import com.mowitnow.tondeuse.domain.services.implementation.ParseurLigneCommandesTondeuseImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 
@@ -22,12 +21,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @since 0.0.1-SNAPSHOT
  * Description : Classe de test regroupant les tests de service {@link com.mowitnow.tondeuse.domain.services.implementation.ParseurLigneCommandesTondeuseImpl}
  */
-@SpringBootTest
 class ParseurLigneCommandesTondeuseTest
 {
-    @Autowired
-    @Qualifier("parseurlignecommandestondeuse")
-    private ParseurLigne parseurlignecommandestondeuse;
+    private static ParseurLigne parseurlignecommandestondeuse;
+
+    @BeforeAll
+    public static void setUp()
+    {
+        parseurlignecommandestondeuse = new ParseurLigneCommandesTondeuseImpl();
+    }
 
     @Test
     void lecture_ligne_des_commandes_de_tondeuse_valide()

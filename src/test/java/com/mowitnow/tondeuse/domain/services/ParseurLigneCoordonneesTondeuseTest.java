@@ -6,25 +6,28 @@ import com.mowitnow.tondeuse.domain.exception.ParseLigneException;
 import com.mowitnow.tondeuse.domain.model.Direction;
 import com.mowitnow.tondeuse.domain.model.Position;
 import com.mowitnow.tondeuse.domain.model.Tondeuse;
+import com.mowitnow.tondeuse.domain.services.implementation.ParseurLigneCoordonneesTondeuseImpl;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author berrami badr
  * @since 0.0.1-SNAPSHOT
  * Description : Classe de test regroupant les tests de service {@link com.mowitnow.tondeuse.domain.services.implementation.ParseurLigneCoordonneesTondeuseImpl}
  */
-@SpringBootTest
 class ParseurLigneCoordonneesTondeuseTest
 {
-    @Autowired
-    @Qualifier("parseurlignecoordonneestondeuse")
-    private ParseurLigne parseurlignecoordonneestondeuse;
+    private static ParseurLigne parseurlignecoordonneestondeuse;
+
+    @BeforeAll
+    public static void setUp()
+    {
+        parseurlignecoordonneestondeuse = new ParseurLigneCoordonneesTondeuseImpl();
+    }
 
 
     @Test
