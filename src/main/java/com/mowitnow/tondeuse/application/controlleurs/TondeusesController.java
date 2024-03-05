@@ -33,11 +33,11 @@ import java.nio.charset.StandardCharsets;
 public class TondeusesController
 {
 
-    private GestionPelouse gestionpelouse;
+    private GestionPelouse gestionPelouse;
 
     public TondeusesController(GestionPelouse gestionPelouse)
     {
-        this.gestionpelouse = gestionPelouse;
+        this.gestionPelouse = gestionPelouse;
     }
 
     /**
@@ -55,7 +55,7 @@ public class TondeusesController
         {
             throw new FichierVideException("Fichier des coordonnees en entré est vide");
         }
-        var pelouse = gestionpelouse.intialiserEtLancerTendeuse(new BufferedReader(
+        var pelouse = gestionPelouse.intialiserEtLancerTendeuse(new BufferedReader(
                 new InputStreamReader(fichier.getInputStream(), StandardCharsets.UTF_8)));
         model.addAttribute("coordonnees", pelouse.toString());
         return "detaildetondeuses";

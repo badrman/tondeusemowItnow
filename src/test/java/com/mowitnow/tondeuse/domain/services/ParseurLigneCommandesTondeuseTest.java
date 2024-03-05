@@ -23,12 +23,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 class ParseurLigneCommandesTondeuseTest
 {
-    private static ParseurLigne parseurlignecommandestondeuse;
+    private static ParseurLigne parseurLigneCommandesTondeuse;
 
     @BeforeAll
     public static void setUp()
     {
-        parseurlignecommandestondeuse = new ParseurLigneCommandesTondeuseImpl();
+        parseurLigneCommandesTondeuse = new ParseurLigneCommandesTondeuseImpl();
     }
 
     @Test
@@ -49,7 +49,7 @@ class ParseurLigneCommandesTondeuseTest
         commandes.add(Commande.AVANCER);
         tondeuseCommandesAttendu.setCommandes(commandes);
         // Act
-        var tondeuseCommandesObtenu = (TondeuseCommandes) parseurlignecommandestondeuse.lireLigneDeFichier(tondeuseCoordonnees);
+        var tondeuseCommandesObtenu = (TondeuseCommandes) parseurLigneCommandesTondeuse.lireLigneDeFichier(tondeuseCoordonnees);
         // Assert
         Assertions.assertEquals(tondeuseCommandesAttendu, tondeuseCommandesObtenu);
     }
@@ -62,7 +62,7 @@ class ParseurLigneCommandesTondeuseTest
         var  tondeuseCoordonneesVide = StringUtils.EMPTY;
         // Act
         var parseLigneException = assertThrows(ParseLigneException.class,
-                () -> parseurlignecommandestondeuse.lireLigneDeFichier(tondeuseCoordonneesVide),
+                () -> parseurLigneCommandesTondeuse.lireLigneDeFichier(tondeuseCoordonneesVide),
                 TestConstantes.MESSAGE_APPEL_METHODE_LIRE_LIGNE_DE_FICHIER);
         assertEquals(ErreursMessages.LIGNE_TONDEUSE_COMMANDES_VIDE_EXCEPTION_MESSAGE, parseLigneException.getMessage());
     }
@@ -75,7 +75,7 @@ class ParseurLigneCommandesTondeuseTest
         var  tondeuseCoordonneesIncorrecte = "GAGAF";
         // Act
         var parseLigneException = assertThrows(ParseLigneException.class,
-                () -> parseurlignecommandestondeuse.lireLigneDeFichier(tondeuseCoordonneesIncorrecte),
+                () -> parseurLigneCommandesTondeuse.lireLigneDeFichier(tondeuseCoordonneesIncorrecte),
                 TestConstantes.MESSAGE_APPEL_METHODE_LIRE_LIGNE_DE_FICHIER);
         assertEquals(ErreursMessages.LIGNE_TONDEUSE_COMMANDES_EXCEPTION_MESSAGE, parseLigneException.getMessage());
     }
