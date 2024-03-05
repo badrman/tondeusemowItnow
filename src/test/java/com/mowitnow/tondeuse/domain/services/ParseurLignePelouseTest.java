@@ -5,7 +5,10 @@ import com.mowitnow.tondeuse.domain.constantes.TestConstantes;
 import com.mowitnow.tondeuse.domain.exception.ParseLigneException;
 import com.mowitnow.tondeuse.domain.model.Pelouse;
 import com.mowitnow.tondeuse.domain.model.Position;
+import com.mowitnow.tondeuse.domain.services.implementation.ParseurLigneCoordonneesTondeuseImpl;
+import com.mowitnow.tondeuse.domain.services.implementation.ParseurLignePelouseImpl;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,12 +22,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @since 0.0.1-SNAPSHOT
  * Description : Classe de test regroupant les tests de service {@link com.mowitnow.tondeuse.domain.services.implementation.ParseurLignePelouseImpl}
  */
-@SpringBootTest
 class ParseurLignePelouseTest
 {
-    @Autowired
-    @Qualifier("parseurlignepelouse")
-    private ParseurLigne parseurlignepelouse;
+    private static ParseurLigne parseurlignepelouse;
+
+    @BeforeAll
+    public static void setUp()
+    {
+        parseurlignepelouse = new ParseurLignePelouseImpl();
+    }
 
     @Test
     void lecture_ligne_des_coordonnees_de_pelouse_valide()

@@ -5,6 +5,8 @@ import com.mowitnow.tondeuse.domain.model.Direction;
 import com.mowitnow.tondeuse.domain.model.Position;
 import com.mowitnow.tondeuse.domain.model.Tondeuse;
 import com.mowitnow.tondeuse.domain.model.TondeuseCommandes;
+import com.mowitnow.tondeuse.domain.services.implementation.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,11 +20,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @since 0.0.1-SNAPSHOT
  * Description : Classe de test regroupant les tests de service {@link GestionTondeuseCommande}
  */
-@SpringBootTest
 class GestionTondeuseCommandeTest {
 
-    @Autowired
-    private GestionTondeuseCommande gestionTondeuseCommande;
+    private static GestionTondeuseCommande gestionTondeuseCommande;
+
+    @BeforeAll
+    public static void setUp()
+    {
+        // Créer une liste des services de mapping
+        gestionTondeuseCommande = new GestionTondeuseCommandeImpl();
+    }
 
     @Test
     void pivoter_tondeuse_a_gauche()
