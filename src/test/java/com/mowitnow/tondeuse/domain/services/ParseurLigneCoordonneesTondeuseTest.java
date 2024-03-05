@@ -21,12 +21,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 class ParseurLigneCoordonneesTondeuseTest
 {
-    private static ParseurLigne parseurlignecoordonneestondeuse;
+    private static ParseurLigne parseurLigneCoordonneesTondeuse;
 
     @BeforeAll
     public static void setUp()
     {
-        parseurlignecoordonneestondeuse = new ParseurLigneCoordonneesTondeuseImpl();
+        parseurLigneCoordonneesTondeuse = new ParseurLigneCoordonneesTondeuseImpl();
     }
 
 
@@ -44,7 +44,7 @@ class ParseurLigneCoordonneesTondeuseTest
         tondeuseAttendu.setPosition(position);
         tondeuseAttendu.setDirection(Direction.NORTH);
         // Act
-        var tondeuseObtenu = parseurlignecoordonneestondeuse.lireLigneDeFichier(tondeuseCoordonnees);
+        var tondeuseObtenu = parseurLigneCoordonneesTondeuse.lireLigneDeFichier(tondeuseCoordonnees);
         // Arrange
         assertEquals(tondeuseAttendu, tondeuseObtenu);
     }
@@ -57,7 +57,7 @@ class ParseurLigneCoordonneesTondeuseTest
         var coordonneesTondeuseVide = StringUtils.EMPTY;
         // Act
         var parseLigneException = assertThrows(ParseLigneException.class,
-                () -> parseurlignecoordonneestondeuse.lireLigneDeFichier(coordonneesTondeuseVide),
+                () -> parseurLigneCoordonneesTondeuse.lireLigneDeFichier(coordonneesTondeuseVide),
                 TestConstantes.MESSAGE_APPEL_METHODE_LIRE_LIGNE_DE_FICHIER);
         assertEquals(ErreursMessages.LIGNE_TONDEUSE_COORDONNEES_VIDE_EXCEPTION_MESSAGE, parseLigneException.getMessage());
     }
@@ -70,7 +70,7 @@ class ParseurLigneCoordonneesTondeuseTest
         var coordonneesTondeuseIncorrecte = "1 3 F";
         // Act
         var parseLigneException = assertThrows(ParseLigneException.class,
-                () -> parseurlignecoordonneestondeuse.lireLigneDeFichier(coordonneesTondeuseIncorrecte),
+                () -> parseurLigneCoordonneesTondeuse.lireLigneDeFichier(coordonneesTondeuseIncorrecte),
                 TestConstantes.MESSAGE_APPEL_METHODE_LIRE_LIGNE_DE_FICHIER);
         assertEquals(ErreursMessages.LIGNE_TONDEUSE_COORDONNEES_EXCEPTION_MESSAGE, parseLigneException.getMessage());
     }

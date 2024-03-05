@@ -32,14 +32,14 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  */
 class GestionPelouseTest
 {
-    private static GestionPelouse gestionpelouse;
+    private static GestionPelouse gestionPelouse;
 
     @BeforeAll
     public static void setUp()
     {
         // Créer une liste des services de mapping
         var parseLigneServices = Arrays.asList(new ParseurLignePelouseImpl(), new ParseurLigneCoordonneesTondeuseImpl(), new ParseurLigneCommandesTondeuseImpl());
-        gestionpelouse = new GestionPelouseImpl(parseLigneServices, new GestionTondeuseImpl(new GestionTondeuseCommandeImpl()));
+        gestionPelouse = new GestionPelouseImpl(parseLigneServices, new GestionTondeuseImpl(new GestionTondeuseCommandeImpl()));
     }
 
 
@@ -54,7 +54,7 @@ class GestionPelouseTest
         var positionInitialeTendeuse2 = new Position(3, 3);
         var pelouse = creerUnPelouse(positionInitialeTendeuse1, positionInitialeTendeuse2);
         // Act
-        var pelouseObtenu = gestionpelouse.initialiserPelouse(fichierEntree);
+        var pelouseObtenu = gestionPelouse.initialiserPelouse(fichierEntree);
         // Assert
         Assertions.assertEquals(pelouse, pelouseObtenu);
     }
@@ -66,7 +66,7 @@ class GestionPelouseTest
         // - Déclarer un fichier vide
         var fichierVide = recupererFichierEntree("files/fichiervide.txt");
         // Act
-        var pelouseNull = gestionpelouse.initialiserPelouse(fichierVide);
+        var pelouseNull = gestionPelouse.initialiserPelouse(fichierVide);
         // Assert
         assertNull(pelouseNull);
     }
@@ -82,7 +82,7 @@ class GestionPelouseTest
         var positionInitialeTendeuse2 = new Position(5, 1);
         var pelouse = creerUnPelouse(positionInitialeTendeuse1, positionInitialeTendeuse2);
         // Act
-        var pelouseObtenu = gestionpelouse.intialiserEtLancerTendeuse(fichierEntree);
+        var pelouseObtenu = gestionPelouse.intialiserEtLancerTendeuse(fichierEntree);
         // Assert
         Assertions.assertEquals(pelouse, pelouseObtenu);
     }

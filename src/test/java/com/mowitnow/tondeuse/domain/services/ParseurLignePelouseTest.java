@@ -5,14 +5,10 @@ import com.mowitnow.tondeuse.domain.constantes.TestConstantes;
 import com.mowitnow.tondeuse.domain.exception.ParseLigneException;
 import com.mowitnow.tondeuse.domain.model.Pelouse;
 import com.mowitnow.tondeuse.domain.model.Position;
-import com.mowitnow.tondeuse.domain.services.implementation.ParseurLigneCoordonneesTondeuseImpl;
 import com.mowitnow.tondeuse.domain.services.implementation.ParseurLignePelouseImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -24,12 +20,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  */
 class ParseurLignePelouseTest
 {
-    private static ParseurLigne parseurlignepelouse;
+    private static ParseurLigne parseurLignePelouse;
 
     @BeforeAll
     public static void setUp()
     {
-        parseurlignepelouse = new ParseurLignePelouseImpl();
+        parseurLignePelouse = new ParseurLignePelouseImpl();
     }
 
     @Test
@@ -45,7 +41,7 @@ class ParseurLignePelouseTest
         var pelouse = new Pelouse(positionSuperieure, null);
         // Act
         // - Appeller le service de parsing des coordonnées de pelouse
-        var pelouseObtenu = parseurlignepelouse.lireLigneDeFichier(coordonneesPelouse);
+        var pelouseObtenu = parseurLignePelouse.lireLigneDeFichier(coordonneesPelouse);
         // Arrange
         assertEquals(pelouse, pelouseObtenu);
     }
@@ -57,7 +53,7 @@ class ParseurLignePelouseTest
         // - Ligne de coordonnées vide
         var coordonneesPelouseVide = StringUtils.EMPTY;
         // Act
-        var parseException = assertThrows(ParseLigneException.class, () -> parseurlignepelouse.lireLigneDeFichier(coordonneesPelouseVide), TestConstantes.MESSAGE_APPEL_METHODE_LIRE_LIGNE_DE_FICHIER);
+        var parseException = assertThrows(ParseLigneException.class, () -> parseurLignePelouse.lireLigneDeFichier(coordonneesPelouseVide), TestConstantes.MESSAGE_APPEL_METHODE_LIRE_LIGNE_DE_FICHIER);
         // Arrange
         assertEquals(ErreursMessages.LIGNE_PELOUSE_COORDONNEES_VIDE_EXCEPTION_MESSAGE, parseException.getMessage());
     }
@@ -69,7 +65,7 @@ class ParseurLignePelouseTest
         // - Ligne de coordonnées incorrecte
         var coordonneesPelouseIncorrectees = "1 2 3";
         // Act
-        var parseException = assertThrows(ParseLigneException.class, () -> parseurlignepelouse.lireLigneDeFichier(coordonneesPelouseIncorrectees), TestConstantes.MESSAGE_APPEL_METHODE_LIRE_LIGNE_DE_FICHIER);
+        var parseException = assertThrows(ParseLigneException.class, () -> parseurLignePelouse.lireLigneDeFichier(coordonneesPelouseIncorrectees), TestConstantes.MESSAGE_APPEL_METHODE_LIRE_LIGNE_DE_FICHIER);
         // Arrange
         assertEquals(ErreursMessages.LIGNE_PELOUSE_COORDONNEES_EXCEPTION_MESSAGE, parseException.getMessage());
     }
