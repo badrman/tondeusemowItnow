@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author berrami badr
  * @since 0.0.1-SNAPSHOT
  *
- * Description : Ce controlleur personalisé permet
+ * Description : Ce controlleur personalisé
  * sert à surcharger le comportement de base de spring boot pour le traitement des
  * URLs inconnus "/error"
  * --> L'url "/error" est interprété par la page pageintrouvable.html
