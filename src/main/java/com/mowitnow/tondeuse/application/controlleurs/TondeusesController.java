@@ -76,7 +76,7 @@ public class TondeusesController
     }
 
     /**
-     * Cette méthode sert à gérer les exceptions de Parsing
+     * Cette méthode sert à gérer l'exception de fichier des coordonnées vide
      * @return une instance de type {@link ModelAndView}
      */
     @ExceptionHandler(FichierVideException.class)
